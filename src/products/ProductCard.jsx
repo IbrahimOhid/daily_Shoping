@@ -4,11 +4,15 @@ import Rating from "./Rating";
 import ProductModalDetails from "./ProductModalDetails";
 
 const ProductCard = ({ product }) => {
-  const [showModal, setShowModal] = useState(false)
+  const [showModal, setShowModal] = useState(false);
+
+  const handleDeleteModal = ()=>{
+    setShowModal(false)
+  }
   return (
       <>
       {
-        showModal && <ProductModalDetails product={product}/>
+        showModal && <ProductModalDetails product={product} onDeleteModal = {handleDeleteModal}/>
       }
       <div href="" onClick={()=>setShowModal(true)}
           className="bg-white rounded-2xl shadow-lg overflow-hidden transform transition-all hover:-translate-y-2 hover:shadow-2xl"
