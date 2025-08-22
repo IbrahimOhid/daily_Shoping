@@ -2,7 +2,7 @@ import React from "react";
 import { getImageUrl } from "../utility/Utilities";
 import Rating from "./Rating";
 
-const ProductModalDetails = ({ product, onDeleteModal }) => {
+const ProductModalDetails = ({ product, onDeleteModal, onAddProduct }) => {
   return (
     <div className="fixed top-0 left-0 w-screen h-screen z-50 bg-black/60 backdrop-blur-sm">
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[420px] sm:max-w-[600px] lg:max-w-[984px] p-4 max-h-[90vh] overflow-auto">
@@ -23,19 +23,23 @@ const ProductModalDetails = ({ product, onDeleteModal }) => {
                   {product.tag}
                 </span>
               </div>
+              <p className="text-primary-600 font-bold mt-2">
+                $ {product.price}
+              </p>
               <div />
             </div>
-            
+
             <div className="grid lg:grid-cols-2 gap-2 mt-6">
               <a
                 className="bg-[#fb3909] rounded-lg py-2 px-5 flex items-center justify-center gap-2 text-white font-semibold text-sm"
                 href="#"
+                onClick={(e) => onAddProduct(e, product)}
               >
-                <span>$ {product.price} | Add to Cart</span>
+                <span>Add to Cart</span>
               </a>
               <a
                 onClick={onDeleteModal}
-                className="text-white  bg-red-500 rounded-lg py-2 px-5 flex items-center justify-center gap-2  dark:text-gray-200 font-semibold text-sm"
+                className="text-white  bg-red-500 rounded-lg py-2 px-5 flex items-center justify-center gap-2   font-semibold text-sm"
                 href="#"
               >
                 Cancel

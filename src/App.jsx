@@ -1,20 +1,17 @@
-import { ProductContext } from "./context";
-import Footer from "./Footer";
-import Header from "./Header";
-import ProductList from "./products/ProductList";
-import SideBar from "./SideBar";
+import { useState } from "react";
+import { ProductContext, ThemeContext } from "./context";
+import Page from "./Page";
 
 function App() {
+  const [cartData, setCartData] = useState([]);
+  const [darkMode, setDarkMode] = useState(true);
   return (
     <>
-      <ProductContext.Provider>
-        <Header />
-      <div className="flex overflow-auto">
-        <SideBar />
-        <ProductList />
-      </div>
-      <Footer />
-      </ProductContext.Provider>
+      <ThemeContext.Provider value={{ darkMode, setDarkMode }}>
+        <ProductContext.Provider value={{ cartData, setCartData }}>
+          <Page />
+        </ProductContext.Provider>
+      </ThemeContext.Provider>
     </>
   );
 }
