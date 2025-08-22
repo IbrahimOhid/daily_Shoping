@@ -9,7 +9,7 @@ import {
 
 const SideBar = () => {
   return (
-    <aside className="w-64 bg-white shadow-md ">
+    <aside className="w-64 bg-white shadow-md">
       <nav className="mt-5 px-2">
         <a
           href="#"

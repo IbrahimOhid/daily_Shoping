@@ -49,14 +49,6 @@ const products = [
     },
     {
         id: crypto.randomUUID(),
-        cover: 'soundbox.jpg',
-        title: 'Bluetooth Speaker',
-        price: 80,
-        rating: 5,
-        tag: 'New'
-    },
-    {
-        id: crypto.randomUUID(),
         cover: 'sunglass.jpg',
         title: 'Unique Sunglass',
         price: 80,
