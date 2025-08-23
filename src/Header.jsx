@@ -1,17 +1,17 @@
-import React, { useContext, useState } from "react";
 import {
-  ShoppingBag,
   Handbag,
-  SunMedium,
-  SearchCheck,
   Moon,
+  SearchCheck,
+  ShoppingBag,
+  SunMedium,
 } from "lucide-react";
-import CartDetails from "./products/CartDetails";
+import { useContext, useState } from "react";
 import { ProductContext, ThemeContext } from "./context";
+import CartDetails from "./products/CartDetails";
 
 const Header = () => {
   const [showCart, setShowCart] = useState(false);
-  const { cartData } = useContext(ProductContext);
+  const { state } = useContext(ProductContext);
   const { darkMode, setDarkMode } = useContext(ThemeContext);
 
   const handleShowCart = (e) => {
@@ -60,9 +60,14 @@ const Header = () => {
                   className="relative p-2 -m-2 text-gray-900 transition-all duration-200 hover:text-gray-700"
                 >
                   <Handbag color="#fb3909" />
-                  <span className="absolute top-0 right-0 flex items-center justify-center w-5 h-5 text-xs font-bold text-white bg-[#fb3909] rounded-full">
-                    {cartData.length}
+                 {
+                  state.cartData.length > 0 &&(
+                    <span className="absolute top-0 right-0 flex items-center justify-center w-5 h-5 text-xs font-bold text-white bg-[#fb3909] rounded-full">
+                    {state.cartData.length}
                   </span>
+                  )
+                   
+                 }
                 </a>
               </div>
             </div>

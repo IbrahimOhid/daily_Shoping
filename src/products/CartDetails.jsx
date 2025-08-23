@@ -3,22 +3,31 @@ import { ProductContext, ThemeContext } from "../context";
 import Rating from "./Rating";
 import { getImageUrl } from "../utility/Utilities";
 import { Trash2, TicketPercent, X } from "lucide-react";
+import { toast } from "react-toastify";
 
 const CartDetails = ({ onHideCart }) => {
-  const { cartData, setCartData } = useContext(ProductContext);
+  const { state, dispatch } = useContext(ProductContext);
   const handleDeleteProduct = (removeProduct) => {
-    const deleteProduct = cartData.filter(
-      (product) => product.id !== removeProduct
-    );
-    setCartData(deleteProduct);
+    dispatch({
+      type: "REMOVE_CART",
+      payload: removeProduct,
+    });
+    toast.warn("Product Removed Successfully !", {
+      position: "bottom-right",
+      autoClose: 3000,
+    });
   };
   const { darkMode } = useContext(ThemeContext);
   return (
     <div className="fixed top-0 left-0 w-screen h-screen z-50 bg-black/60 backdrop-blur-sm">
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[420px] sm:max-w-[600px] lg:max-w-[790px] p-4 max-h-[90vh] overflow-auto">
-        <div className={`w-full h-full ${darkMode ? 'dark' : 'bg-white'} shadow-md  rounded-2xl overflow-hidden p-5 md:p-9`}>
+        <div
+          className={`w-full h-full ${
+            darkMode ? "dark" : "bg-white"
+          } shadow-md  rounded-2xl overflow-hidden p-5 md:p-9`}
+        >
           <h2 className="text-2xl lg:text-[30px] mb-5 font-bold">Your Carts</h2>
-          {cartData.length === 0 ? (
+          {state.cartData.length === 0 ? (
             <div>
               <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-100">
                 <X className="text-red-500" />
@@ -29,7 +38,7 @@ const CartDetails = ({ onHideCart }) => {
             </div>
           ) : (
             <div className="space-y-8 lg:space-y-12 max-h-[450px] overflow-auto mb-10 lg:mb-14 pr-2">
-              {cartData.map((product) => (
+              {state.cartData.map((product) => (
                 <div
                   key={product.id}
                   className="grid grid-cols-[1fr_auto] gap-4 border p-2 rounded-lg border-[#fb3909]"
@@ -54,7 +63,7 @@ const CartDetails = ({ onHideCart }) => {
                   </div>
                   <div className="flex justify-between gap-4 items-center">
                     <a
-                      onClick={() => handleDeleteProduct(product.id)}
+                      onClick={() => handleDeleteProduct(product)}
                       href="#"
                       className="bg-red-500 rounded-md p-2 md:px-4 inline-flex items-center space-x-2 text-white"
                     >

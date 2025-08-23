@@ -3,18 +3,31 @@ import { getImageUrl } from "../utility/Utilities";
 import Rating from "./Rating";
 import ProductModalDetails from "./ProductModalDetails";
 import { ProductContext } from "../context";
+import { toast } from "react-toastify";
 
 const ProductCard = ({ product }) => {
   const [showModal, setShowModal] = useState(false);
-  const { cartData, setCartData } = useContext(ProductContext);
+  const { state, dispatch } = useContext(ProductContext);
 
   const handleAddProduct = (e, product) => {
     e.stopPropagation();
-    const findProduct = cartData.find((item) => item.id === product.id);
+    const findProduct = state.cartData.find((item) => item.id === product.id);
     if (!findProduct) {
-      setCartData([...cartData, product]);
+      dispatch({
+        type: "ADD_TO_CART",
+        payload: {
+          ...product,
+        },
+      });
+      toast.success("Product Added Successfully !", {
+        position: "bottom-right",
+        autoClose: 3000,
+      });
     } else {
-      alert("added");
+      toast.error("Already Product Added !", {
+        position: "top-center",
+        autoClose: 3000,
+      });
     }
   };
 
