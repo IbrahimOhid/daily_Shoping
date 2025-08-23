@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { ProductContext } from "../context";
+import { ProductContext, ThemeContext } from "../context";
 import Rating from "./Rating";
 import { getImageUrl } from "../utility/Utilities";
 import { Trash2, TicketPercent, X } from "lucide-react";
@@ -12,10 +12,11 @@ const CartDetails = ({ onHideCart }) => {
     );
     setCartData(deleteProduct);
   };
+  const { darkMode } = useContext(ThemeContext);
   return (
     <div className="fixed top-0 left-0 w-screen h-screen z-50 bg-black/60 backdrop-blur-sm">
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[420px] sm:max-w-[600px] lg:max-w-[790px] p-4 max-h-[90vh] overflow-auto">
-        <div className="bg-white shadow-md dark:bg-[#12141D] rounded-2xl overflow-hidden p-5 md:p-9">
+        <div className={`w-full h-full ${darkMode ? 'dark' : 'bg-white'} shadow-md  rounded-2xl overflow-hidden p-5 md:p-9`}>
           <h2 className="text-2xl lg:text-[30px] mb-5 font-bold">Your Carts</h2>
           {cartData.length === 0 ? (
             <div>
@@ -27,7 +28,7 @@ const CartDetails = ({ onHideCart }) => {
               </h1>
             </div>
           ) : (
-            <div className="space-y-8 lg:space-y-12 max-h-[450px] overflow-auto mb-10 lg:mb-14">
+            <div className="space-y-8 lg:space-y-12 max-h-[450px] overflow-auto mb-10 lg:mb-14 pr-2">
               {cartData.map((product) => (
                 <div
                   key={product.id}
