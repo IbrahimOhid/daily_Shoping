@@ -22,7 +22,7 @@ const Header = () => {
     <div>
       {showCart && <CartDetails onHideCart={() => setShowCart(false)} />}
       <header className=" fixed top-0 left-0 w-full z-50 backdrop-blur-lg shadow-md">
-        <div className="px-4 mx-auto sm:px-6 lg:px-8 xl:px-12">
+        <div className="pr-8 pl-2 mx-auto">
           <div className="flex items-center justify-between h-16 lg:h-[72px]">
             <div className="flex items-center flex-shrink-0">
               <a href="#" title="" className="inline-flex">
@@ -60,14 +60,11 @@ const Header = () => {
                   className="relative p-2 -m-2 text-gray-900 transition-all duration-200 hover:text-gray-700"
                 >
                   <Handbag color="#fb3909" />
-                 {
-                  state.cartData.length > 0 &&(
+                  {state.cartData.length > 0 && (
                     <span className="absolute top-0 right-0 flex items-center justify-center w-5 h-5 text-xs font-bold text-white bg-[#fb3909] rounded-full">
-                    {state.cartData.length}
-                  </span>
-                  )
-                   
-                 }
+                      {state.cartData.length}
+                    </span>
+                  )}
                 </a>
               </div>
             </div>
