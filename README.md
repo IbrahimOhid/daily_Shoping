@@ -3,12 +3,11 @@
 
 A modern shopping list application built with React, Vite, and Tailwind CSS.
 
+**Component Structure**
+![Component Structure](/src/assets/Component%20Structure.png)
 
-# Component Structure
-![Component Structure](/src/assets/Component Structure.png)
-
-# Component Mine Map
-![Component Mine Map](/src/assets/Component Mine Map.png)
+**Component Mine Map**
+![Component Mine Map](/src/assets/Component%20Mine%20Map.png)
 
 
 # Features
